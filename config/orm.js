@@ -1,4 +1,19 @@
-var connection = require("./config/connection");
+var connection = require("./connection");
+
+function convertObj(object) {
+    var arr = [];
+
+    for (var key in object) {
+      var value = object[key];
+      if (Object.hasOwnProperty.call(object, key)) {
+        if (typeof value === "string" && value.indexOf(" ") >= 0) {
+          value = "'" + value + "'";
+        }
+        arr.push(key + "=" + value);
+      }
+    }
+    return arr.toString();
+  }
 
 var orm = {
     // SELECT * FROM burgers
@@ -10,12 +25,11 @@ var orm = {
         })
     },
 
-    // INSERT INTO burgers(burger_name, devoured)
-    // VALUES ("Cheeseburger", false)
     insertOne: function(tableInput, colInput, colVal, cb) {
+
         var qString = `INSERT INTO ${tableInput}`;
         qString += `(${colInput}) `;
-        qString += `VALUES (${colVal});`
+        qString += `VALUES ("${colVal}");`
         connection.query(qString, function(err, result){
             if (err) { throw err; }
             cb(result);
@@ -26,10 +40,11 @@ var orm = {
     // SET devoured = true
     // WHERE CustomerID = 1;
     updateOne: function(tableInput, objColVal, id, cb) {
-        console.log("object", objColVal);
+        convertObj(objColVal);
         var qString = `UPDATE ${tableInput} `;
-        qString += `SET ${colInput} = ${colVal} `;
-        qString += `WHERE id=?`;
+        qString += `SET `; 
+        qString += convertObj(objColVal);
+        qString += ` WHERE id=?`;
         connection.query(qString, id, function(err,result){
             if (err) { throw err; }
             cb(result);
