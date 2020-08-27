@@ -1,13 +1,39 @@
 var express = require("express");
-var exphbs = require("express-handlebars");
-var burger = require("../models/burger");
+var burger = require("../models/burger.js");
 
-var app = express();
+var route = express.Router();
 
-var PORT = process.env.PORT || 8080;
+router.get("/", function(req, res){
+    burger.all(function(data) {
+        var hbsObj = {
+            burgers: data
+        };
+        console.log('hbsObj', hbsObj);
+        res.render("index", hbsObj);
+    });
+});
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+router.post("/api/burgers", function(req, res){
+    console.log('user input',req.body);
+    burger.insert(['burger'],[req.body.name],function(data) {
+        res.json({ id: data.insertId });
+    });
+});
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
+router.put("/api/burgers/:id", function(req, res) {
+    var idNumb = req.params.id;
+    burger.update(
+        {
+            devoured: req.body.devoured
+        },
+        idNumb,
+        function(result) {
+            if (result.changedRows === 0) {
+                res.status(404).end();
+            } 
+            res.status(200).end();
+        }
+    );
+});
+
+module.exports = router;

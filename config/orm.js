@@ -25,7 +25,8 @@ var orm = {
     // UPDATE burgers
     // SET devoured = true
     // WHERE CustomerID = 1;
-    updateOne: function(tableInput, colInput, colVal, id, cb) {
+    updateOne: function(tableInput, objColVal, id, cb) {
+        console.log("object", objColVal);
         var qString = `UPDATE ${tableInput} `;
         qString += `SET ${colInput} = ${colVal} `;
         qString += `WHERE id=?`;
