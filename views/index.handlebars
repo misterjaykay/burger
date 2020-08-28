@@ -1,39 +1,102 @@
-<h1>Fatty Burgers!</h1>
+<div class="jumbotron text-center">
+  <div class="container">
+    <h1 class="display-4">Fatty Burgers!</h1>
 
-<h2>NOM NOM NOM</h2>
-<h3>Eat all burgers until you die!</h3>
+    <p class="lead">NOM NOM NOM</h2>
+  </div>
+</div>
 
-<ul>
-    {{#each burgers}}
-        {{#unless devoured}}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 my-2">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center">Eat all burgers until you die!</h3>
+          <h4 class="text-center">Currently eatable</h4>
+          <hr>
+          <ul>
+            {{#each burgers}}
+            {{#unless devoured}}
             {{> burgers/burger-block devoured=true}}
-        {{/unless}}
-    {{/each}}
-</ul>
+            {{/unless}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
 
-<h3>All the burgers you finished!</h3>
 
-<ul>
-    {{#each burgers}}
-        {{#if devoured}}
+
+    <div class="col-md-5 my-2">
+      <div class="card">
+        <div class="card-body">
+          <h3 class="text-center">All the burgers you devoured!</h3>
+          <h4 class="text-center">Currently devoured</h4>
+          <hr>
+          <ul>
+            {{#each burgers}}
+            {{#if devoured}}
             {{> burgers/burger-block devoured=false}}
-        {{/if}}
-    {{/each}}
-</ul>
-
-<h3>Add a Burger</h3>
-<form class="create-form">
-
-  <div class="form-group">
-    <label for="bu">Burger Name:</label>
-    <input type="text" id="burg" name="name">
+            {{/if}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="form-group">
-    <label for="devo">Hungry?</label><br>
-    <input type="radio" name="devoured" value="0" checked> Hungry?!<br>
-    <input type="radio" name="devoured" value="1"> Full
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 my-2">
+      <div class="card">
+        <div class="card-body">
+          <h3>Add a Burger</h3>
+          <hr>
+          <form class="create-form">
+
+            <div class="form-group">
+              <label for="bu">Burger Name:</label>
+              <input type="text" id="burg" name="name">
+            </div>
+
+            <div class="form-group">
+              <label for="devo">Hungry?</label><br>
+              <input type="radio" name="devoured" value="0" checked> Hungry?!<br>
+              <input type="radio" name="devoured" value="1"> Full
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Add Burger</button>
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-md-4 my-2">
+      <div class="card">
+        <div class="card-body">
+          <h3>Add a Sidemenu</h3>
+          <hr>
+          <form class="create-form">
+
+            <div class="form-group">
+              <label for="bu">Sidemenu Name:</label>
+              <input type="text" id="burg" name="name">
+            </div>
+
+            <div class="form-group">
+              <label for="devo">Hungry?</label><br>
+              <input type="radio" name="devoured" value="0" checked> Hungry?!<br>
+              <input type="radio" name="devoured" value="1"> Full
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-sm">Add Sidemenu</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </div>
-
-  <button type="submit">Add Burger</button>
-</form>
+</div>
