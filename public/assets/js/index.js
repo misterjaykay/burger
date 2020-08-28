@@ -40,7 +40,7 @@ $(function () {
     });
   });
 
-  $(".delete-form").on("click", function (event) {
+  $(".delete-button").on("click", function (event) {
     // var id = $(this).data("planid");
     var id = $("[name=id]").val().trim();
 
