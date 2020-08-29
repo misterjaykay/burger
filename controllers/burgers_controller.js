@@ -40,7 +40,7 @@ router.put("/api/burgers/:id", function (req, res) {
 
 router.delete("/api/burgers/:id", function (req, res) {
   var idNumb = req.params.id;
-  burger.delete(["id"], idNumb, function (result) {
+  burger.delete(idNumb, function (result) {
     if (result.affectedRow === 0) {
       res.status(404).end();
     }
