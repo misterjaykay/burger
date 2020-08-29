@@ -36,7 +36,7 @@
   ## Preview
 
   ### Heroku Links
-  [Click here to vist deployed page in Heroku](https://fatty-burger-jk.herokuapp.com/)
+  [Click here to vist deployed page in Heroku](https://nom-nom-burger-jk.herokuapp.com/)
   
   ### Screenshot
   ![Screenshot](public/assets/image/screenshot.png)
