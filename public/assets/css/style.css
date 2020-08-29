@@ -3,3 +3,18 @@ body {
     background-size: cover;
     background-position: center;
 }
+
+ul {
+    list-style-type: none;
+}
+
+.jumbotron {
+    background-color: #7FCF61;
+}
+
+.card {
+    border-width: 1px;
+    border-color: gray;
+    border-radius: 25px;
+    background-color: #E2E78D;
+}
